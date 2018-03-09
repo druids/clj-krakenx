@@ -23,6 +23,10 @@
 
 
 (defn- unmarshal-response
+  "Unmashals a `response` as JSON. Because Kraken doesn't care about HTTP codes success and failure calls are returned
+  with status code 200. A success result is parsed and assoced into `:krakenx/result` attribute and an error result
+  into `:krakenx/error`. In case of invalid JSON response, nothing is parsed and attribute `:krakenx/unmarshal-error`
+  is assoced within a parsed error message."
   [response]
   (try
     (let [body (http/json-decode (:body response) true)]
@@ -54,3 +58,13 @@
    (get-time kraken-host))
   ([host]
    (post-request host (:time routes) nil)))
+
+
+(defn get-asset-info
+  "Returns asset information"
+  ([]
+   (get-asset-info nil))
+  ([opts]
+   (get-asset-info opts kraken-host))
+  ([opts host]
+   (post-request host (:asset-info routes) (update opts :asset (partial join ",")))))
