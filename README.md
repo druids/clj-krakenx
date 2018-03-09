@@ -45,3 +45,27 @@ When you need to mock a response, you can pass a host to a caller
 ```clojure
 (krakenx/get-time "my-mock-domain.localhost")
 ```
+
+
+### get-asset-info
+
+Returns asset information. Request's options can be passed as hash-map. Assets are joined by a comma automatically,
+thus you don't need to do it by a hand.
+
+```clojure
+(:krakenx/result (krakenx/get-asset-info {:asset ["ZEUR" "XETH"]}))
+;; {:XETH {:aclass "currency", :altname "ETH", :decimals 10, :display_decimals 5},
+;;  :ZEUR {:aclass "currency", :altname "EUR", :decimals 4, :display_decimals 2}}
+```
+
+Error response example
+
+```clojure
+(:krakenx/error (krakenx/get-asset-info {:asset ["foo"]})) ;; ["EQuery:Unknown asset"]
+```
+
+Of source a host can by passed as last argument
+
+```clojure
+(krakenx/get-asset-info {:asset ["ZEUR" "XETH"]} "my-mock-domain.localhost"))
+```
