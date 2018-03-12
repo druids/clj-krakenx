@@ -1,3 +1,10 @@
+## 0.2.0
+
+#### New Features
+
+  - Add get-tradable-asset-pairs function #6
+
+
 ## 0.1.0
 
 #### New Features

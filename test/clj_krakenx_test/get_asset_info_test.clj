@@ -34,7 +34,7 @@
            success-response (:result success-response) (:error success-response) ["ZEUR" "XETH"]
            error-response (:result error-response) (:error error-response) ["foo"])))
 
-  (testing "default host"
+  (testing "default host, with options"
     (let [response {:error []
                     :result {:XETH {:aclass "currency", :altname "ETH", :decimals 10, :display_decimals 5}
                              :ZEUR {:aclass "currency", :altname "EUR", :decimals 4, :display_decimals 2}}}]
@@ -42,4 +42,13 @@
                          {:post (fn [request]
                                   (is(= "{\"asset\":\"ZEUR,XETH\"}"  (-> request :body slurp)))
                                   {:status 200, :body (cheshire/generate-string response)})}}
-        (assert-asset-info-response (krakenx/get-asset-info {:asset ["ZEUR" "XETH"]}) (:result response) [])))))
+        (assert-asset-info-response (krakenx/get-asset-info {:asset ["ZEUR" "XETH"]}) (:result response) []))))
+
+  (testing "default host, without options"
+    (let [response {:error []
+                    :result {:XETH {:aclass "currency", :altname "ETH", :decimals 10, :display_decimals 5}
+                             :ZEUR {:aclass "currency", :altname "EUR", :decimals 4, :display_decimals 2}}}]
+      (with-fake-routes {(str krakenx/kraken-host (:asset-info krakenx/routes))
+                         {:post (fn [_]
+                                  {:status 200, :body (cheshire/generate-string response)})}}
+        (assert-asset-info-response (krakenx/get-asset-info) (:result response) [])))))

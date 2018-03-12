@@ -2,7 +2,11 @@
   (:require
     [clojure.string :refer [blank? join]]
     [cemerick.url :as url]
-    [clj-http.client :as http]))
+    [clj-http.client :as http]
+    [io.aviso.toolchest.collections :refer [update-if?]]))
+
+
+(def comma-join (partial join ","))
 
 
 (def http-opts
@@ -14,7 +18,7 @@
 (def routes
   (reduce-kv #(assoc %1 %2 (str "/0/public/" %3)) {} {:time "Time"
                                                       :asset-info "Assets"
-                                                      :tradable-asset-pair "AssetPairs"
+                                                      :tradable-asset-pairs "AssetPairs"
                                                       :ticker-info "Ticker"
                                                       :ohlc-data "OHLC"
                                                       :recent-trades "Trades"
@@ -67,4 +71,14 @@
   ([opts]
    (get-asset-info opts kraken-host))
   ([opts host]
-   (post-request host (:asset-info routes) (update opts :asset (partial join ",")))))
+   (post-request host (:asset-info routes) (update-if? opts :asset (partial join ",")))))
+
+
+(defn get-tradable-asset-pairs
+  "Returns tradable asset pairs"
+  ([]
+   (get-tradable-asset-pairs nil))
+  ([opts]
+   (get-tradable-asset-pairs opts kraken-host))
+  ([opts host]
+   (post-request host (:tradable-asset-pairs routes) (update-if? opts :pair (partial join ",")))))
