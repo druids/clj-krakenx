@@ -64,8 +64,34 @@ Error response example
 (:krakenx/error (krakenx/get-asset-info {:asset ["foo"]})) ;; ["EQuery:Unknown asset"]
 ```
 
-Of source a host can by passed as last argument
+Of course a host can by passed as last argument
 
 ```clojure
 (krakenx/get-asset-info {:asset ["ZEUR" "XETH"]} "my-mock-domain.localhost"))
+```
+
+
+### get-tradable-asset-pairs
+
+Returns tradable asset pairs. Request's options can be passed as hash-map. Pairs are joined by a comma automatically,
+thus you don't need to do it by a hand.
+
+To get all tradable asset pairs
+
+```clojure
+(:krakenx/result (krakenx/get-tradable-asset-pairs))
+;; {:EOSETH {:lot_decimals 8, :altname "EOSETH", :aclass_base "currency", :margin_call 80, :leverage_buy [], ...
+```
+
+To get margin of XBT/EUR
+```clojure
+(:krakenx/result (k/get-tradable-asset-pairs {:info "margin", :pair ["XXBTZEUR"]}))
+;; {:XXBTZEUR {:margin_call 80, :margin_level 40}}
+```
+
+Of course a host can by passed as last argument
+
+```clojure
+(:krakenx/result (k/get-tradable-asset-pairs {:info "margin", :pair ["XXBTZEUR"]} "my-mock-domain.localhost"))
+;; {:XXBTZEUR {:margin_call 80, :margin_level 40}}
 ```
