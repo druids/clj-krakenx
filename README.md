@@ -95,3 +95,19 @@ Of course a host can by passed as last argument
 (:krakenx/result (k/get-tradable-asset-pairs {:info "margin", :pair ["XXBTZEUR"]} "my-mock-domain.localhost"))
 ;; {:XXBTZEUR {:margin_call 80, :margin_level 40}}
 ```
+
+### get-ticker-information
+
+Returns ticker information
+
+```clojure
+(:rakenx/result (k/get-ticker-info {:pair ["BTCEUR"]}))
+;; {:XXBTZEUR {:v ["4481.33532282" "13957.63622703"], :o "7748.60000", ...
+```
+
+Of course a host can by passed as last argument
+
+```clojure
+(:rakenx/result (k/get-ticker-info {:pair ["BTCEUR"]} "my-mock-domain.localhost"))
+;; {:XXBTZEUR {:v ["4481.33532282" "13957.63622703"], :o "7748.60000", ...
+```

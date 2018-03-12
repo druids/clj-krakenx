@@ -3,6 +3,7 @@
 #### New Features
 
   - Add get-tradable-asset-pairs function #6
+  - Add get-ticker-information function #6
 
 
 ## 0.1.0
