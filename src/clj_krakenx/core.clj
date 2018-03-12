@@ -71,7 +71,7 @@
   ([opts]
    (get-asset-info opts kraken-host))
   ([opts host]
-   (post-request host (:asset-info routes) (update-if? opts :asset (partial join ",")))))
+   (post-request host (:asset-info routes) (update-if? opts :asset comma-join))))
 
 
 (defn get-tradable-asset-pairs
@@ -81,4 +81,12 @@
   ([opts]
    (get-tradable-asset-pairs opts kraken-host))
   ([opts host]
-   (post-request host (:tradable-asset-pairs routes) (update-if? opts :pair (partial join ",")))))
+   (post-request host (:tradable-asset-pairs routes) (update-if? opts :pair comma-join))))
+
+
+(defn get-ticker-info
+  "Returns ticker information"
+  ([opts]
+   (get-ticker-info opts kraken-host))
+  ([opts host]
+   (post-request host (:ticker-info routes) (update opts :pair comma-join))))
