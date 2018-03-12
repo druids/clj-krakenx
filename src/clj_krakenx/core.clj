@@ -100,6 +100,14 @@
    (post-request host (:ohlc-data routes) opts)))
 
 
+(defn get-orderbook
+  "Returns orderbook"
+  ([opts]
+   (get-orderbook opts kraken-host))
+  ([opts host]
+   (post-request host (:orderbook routes) opts)))
+
+
 (defn get-recent-trades
   "Returns recent trades"
   ([opts]

@@ -142,6 +142,31 @@ Of course a host can by passed as last argument
 ;; {:XXBTZEUR [[1519561800 "7817.4" "7817.4" "7727.2" "7757.9" "7767.6" "232.23015300" 1057] [1519563600 "7755.1" "7800.0" "7710.0" "7718.9" "7766.0" "223.74132895" 578], ... 
 ```
 
+### get-orderbook
+
+Returns recent trades
+
+```clojure
+(:krakenx/result (krakenx/get-orderbook {:pair "BTCEUR"}))
+;; {:XXBTZEUR {:asks [["7969.50000" "0.159" 1520858436], ...
+```
+
+Get trade data within since ID
+
+```clojure
+(:krakenx/result (krakenx/get-orderbook {:pair "BTCEUR", :count 2}))
+;; {:XXBTZEUR {:asks [["7961.50000" "0.034" 1520858689] ["7962.00000" "1.108" 1520858697]]
+;;             :bids [["7959.90000" "0.013" 1520858696] ["7957.80000" "2.046" 1520858698]]}}
+```
+
+
+Of course a host can by passed as last argument
+
+```clojure
+(:krakenx/result (krakenx/get-orderbook {:pair "BTCEUR"} "my-mock-domain.localhost"))
+;; {:XXBTZEUR {:asks [["7969.50000" "0.159" 1520858436], ...
+```
+
 ### get-recent-trades
 
 Returns recent trades

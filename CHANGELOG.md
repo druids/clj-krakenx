@@ -5,6 +5,7 @@
   - Add get-tradable-asset-pairs function #6
   - Add get-ticker-information function #6
   - Add get-ohlc-data function #6
+  - Add get-orderbook function #6
   - Add get-recent-trades function #6
 
 
