@@ -190,3 +190,26 @@ Of course a host can by passed as last argument
 (:krakenx/result (krakenx/get-recent-trades {:pair "BTCEUR"} "my-mock-domain.localhost"))
 ;; {:XXBTZEUR [["7979.60000" "1.50000000" 1.5208551442189E9 "b" "m" ""], ...
 ```
+
+### get-recent-spread-data
+
+Returns recent spread data
+
+```clojure
+(:krakenx/result (krakenx/get-recent-spread-data {:pair "BTCEUR"}))
+;; {:XXBTZEUR [[1520858621 "7949.10000" "7950.00000"], ...
+```
+
+Get spread data within since ID
+
+```clojure
+(:krakenx/result (krakenx/get-recent-spread-data {:pair "BTCEUR", :since 1504035462}))
+;; {:XXBTZEUR [[1520858621 "7949.10000" "7950.00000"], ...
+
+
+Of course a host can by passed as last argument
+
+```clojure
+(:krakenx/result (krakenx/get-recent-spread-data {:pair "BTCEUR"} "my-mock-domain.localhost"))
+;; {:XXBTZEUR [[1520858621 "7949.10000" "7950.00000"], ...
+```
