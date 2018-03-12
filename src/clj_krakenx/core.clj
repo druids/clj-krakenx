@@ -98,3 +98,11 @@
    (get-ohlc-data opts kraken-host))
   ([opts host]
    (post-request host (:ohlc-data routes) opts)))
+
+
+(defn get-recent-trades
+  "Returns recent trades"
+  ([opts]
+   (get-recent-trades opts kraken-host))
+  ([opts host]
+   (post-request host (:recent-trades routes) opts)))
