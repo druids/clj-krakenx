@@ -85,14 +85,14 @@ To get all tradable asset pairs
 
 To get margin of XBT/EUR
 ```clojure
-(:krakenx/result (k/get-tradable-asset-pairs {:info "margin", :pair ["XXBTZEUR"]}))
+(:krakenx/result (krakenx/get-tradable-asset-pairs {:info "margin", :pair ["XXBTZEUR"]}))
 ;; {:XXBTZEUR {:margin_call 80, :margin_level 40}}
 ```
 
 Of course a host can by passed as last argument
 
 ```clojure
-(:krakenx/result (k/get-tradable-asset-pairs {:info "margin", :pair ["XXBTZEUR"]} "my-mock-domain.localhost"))
+(:krakenx/result (krakenx/get-tradable-asset-pairs {:info "margin", :pair ["XXBTZEUR"]} "my-mock-domain.localhost"))
 ;; {:XXBTZEUR {:margin_call 80, :margin_level 40}}
 ```
 
@@ -101,20 +101,20 @@ Of course a host can by passed as last argument
 Returns ticker information
 
 ```clojure
-(:rakenx/result (k/get-ticker-info {:pair ["BTCEUR"]}))
+(:krakenx/result (krakenx/get-ticker-info {:pair ["BTCEUR"]}))
 ;; {:XXBTZEUR {:v ["4481.33532282" "13957.63622703"], :o "7748.60000", ...
 ```
 
 
 ```clojure
-(:rakenx/result (k/get-ticker-info {:pair ["BTCEUR"]}))
+(:krakenx/result (krakenx/get-ticker-info {:pair ["BTCEUR"]}))
 ;; {:XXBTZEUR {:v ["4481.33532282" "13957.63622703"], :o "7748.60000", ...
 ```
 
 Of course a host can by passed as last argument
 
 ```clojure
-(:rakenx/result (k/get-ohlc-data {:pair "BTCEUR"} "my-mock-domain.localhost"))
+(:krakenx/result (krakenx/get-ohlc-data {:pair "BTCEUR"} "my-mock-domain.localhost"))
 ;; {:XXBTZEUR {:v ["4481.33532282" "13957.63622703"], :o "7748.60000", ...
 ```
 
@@ -123,14 +123,14 @@ Of course a host can by passed as last argument
 Returns OHLC data
 
 ```clojure
-(:rakenx/result (k/get-ohlc-data {:pair "BTCEUR"}))
+(:krakenx/result (krakenx/get-ohlc-data {:pair "BTCEUR"}))
 ;; {:XXBTZEUR [[1519561800 "7817.4" "7817.4" "7727.2" "7757.9" "7767.6" "232.23015300" 1057] [1519563600 "7755.1" "7800.0" "7710.0" "7718.9" "7766.0" "223.74132895" 578], ... 
 ```
 
 Get OHLC data within interval 30 minutes
 
 ```clojure
-(:rakenx/result (k/get-ohlc-data {:pair "BTCEUR", :interval 30}))
+(:krakenx/result (krakenx/get-ohlc-data {:pair "BTCEUR", :interval 30}))
 ;; {:XXBTZEUR [[1519561800 "7817.4" "7817.4" "7727.2" "7757.9" "7767.6" "232.23015300" 1057] [1519563600 "7755.1" "7800.0" "7710.0" "7718.9" "7766.0" "223.74132895" 578], ... 
 ```
 
@@ -138,6 +138,30 @@ Get OHLC data within interval 30 minutes
 Of course a host can by passed as last argument
 
 ```clojure
-(:rakenx/result (k/get-ticker-info {:pair ["BTCEUR"]} "my-mock-domain.localhost"))
+(:krakenx/result (krakenx/get-ticker-info {:pair ["BTCEUR"]} "my-mock-domain.localhost"))
 ;; {:XXBTZEUR [[1519561800 "7817.4" "7817.4" "7727.2" "7757.9" "7767.6" "232.23015300" 1057] [1519563600 "7755.1" "7800.0" "7710.0" "7718.9" "7766.0" "223.74132895" 578], ... 
+```
+
+### get-recent-trades
+
+Returns recent trades
+
+```clojure
+(:krakenx/result (krakenx/get-recent-trades {:pair "BTCEUR"}))
+;; {:XXBTZEUR [["7979.60000" "1.50000000" 1.5208551442189E9 "b" "m" ""], ...
+```
+
+Get trade data within since ID
+
+```clojure
+(:krakenx/result (krakenx/get-recent-trades {:pair "BTCEUR", :since 1504035462}))
+;; {:XXBTZEUR [["7979.60000" "1.50000000" 1.5208551442189E9 "b" "m" ""], ...
+```
+
+
+Of course a host can by passed as last argument
+
+```clojure
+(:krakenx/result (krakenx/get-recent-trades {:pair "BTCEUR"} "my-mock-domain.localhost"))
+;; {:XXBTZEUR [["7979.60000" "1.50000000" 1.5208551442189E9 "b" "m" ""], ...
 ```
