@@ -12,7 +12,7 @@ Leiningen/Boot
 --------------
 
 ```clojure
-[clj-krakenx "0.1.0"]
+[clj-krakenx "0.2.0"]
 ```
 
 
