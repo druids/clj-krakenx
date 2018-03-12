@@ -7,6 +7,7 @@
   - Add get-ohlc-data function #6
   - Add get-orderbook function #6
   - Add get-recent-trades function #6
+  - Add get-recent-spread-data function #6
 
 
 ## 0.1.0

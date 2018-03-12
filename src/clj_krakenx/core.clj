@@ -114,3 +114,11 @@
    (get-recent-trades opts kraken-host))
   ([opts host]
    (post-request host (:recent-trades routes) opts)))
+
+
+(defn get-recent-spread-data
+  "Returns recent spread data"
+  ([opts]
+   (get-recent-spread-data opts kraken-host))
+  ([opts host]
+   (post-request host (:recent-spread-data routes) opts)))
