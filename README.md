@@ -105,9 +105,39 @@ Returns ticker information
 ;; {:XXBTZEUR {:v ["4481.33532282" "13957.63622703"], :o "7748.60000", ...
 ```
 
+
+```clojure
+(:rakenx/result (k/get-ticker-info {:pair ["BTCEUR"]}))
+;; {:XXBTZEUR {:v ["4481.33532282" "13957.63622703"], :o "7748.60000", ...
+```
+
+Of course a host can by passed as last argument
+
+```clojure
+(:rakenx/result (k/get-ohlc-data {:pair "BTCEUR"} "my-mock-domain.localhost"))
+;; {:XXBTZEUR {:v ["4481.33532282" "13957.63622703"], :o "7748.60000", ...
+```
+
+### get-ohlc-data
+
+Returns OHLC data
+
+```clojure
+(:rakenx/result (k/get-ohlc-data {:pair "BTCEUR"}))
+;; {:XXBTZEUR [[1519561800 "7817.4" "7817.4" "7727.2" "7757.9" "7767.6" "232.23015300" 1057] [1519563600 "7755.1" "7800.0" "7710.0" "7718.9" "7766.0" "223.74132895" 578], ... 
+```
+
+Get OHLC data within interval 30 minutes
+
+```clojure
+(:rakenx/result (k/get-ohlc-data {:pair "BTCEUR", :interval 30}))
+;; {:XXBTZEUR [[1519561800 "7817.4" "7817.4" "7727.2" "7757.9" "7767.6" "232.23015300" 1057] [1519563600 "7755.1" "7800.0" "7710.0" "7718.9" "7766.0" "223.74132895" 578], ... 
+```
+
+
 Of course a host can by passed as last argument
 
 ```clojure
 (:rakenx/result (k/get-ticker-info {:pair ["BTCEUR"]} "my-mock-domain.localhost"))
-;; {:XXBTZEUR {:v ["4481.33532282" "13957.63622703"], :o "7748.60000", ...
+;; {:XXBTZEUR [[1519561800 "7817.4" "7817.4" "7727.2" "7757.9" "7767.6" "232.23015300" 1057] [1519563600 "7755.1" "7800.0" "7710.0" "7718.9" "7766.0" "223.74132895" 578], ... 
 ```

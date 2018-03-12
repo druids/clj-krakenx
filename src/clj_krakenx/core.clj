@@ -90,3 +90,11 @@
    (get-ticker-info opts kraken-host))
   ([opts host]
    (post-request host (:ticker-info routes) (update opts :pair comma-join))))
+
+
+(defn get-ohlc-data
+  "Returns OHLC data"
+  ([opts]
+   (get-ohlc-data opts kraken-host))
+  ([opts host]
+   (post-request host (:ohlc-data routes) opts)))
